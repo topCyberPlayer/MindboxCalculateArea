@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CalculationArea.Shapes
 {
-    public class Triangle : IShape
+    public struct Triangle : IShape
     {
         private double _side1, _side2, _side3;
 
