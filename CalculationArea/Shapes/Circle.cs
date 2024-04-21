@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CalculationArea.Shapes
+﻿namespace CalculationArea.Shapes
 {
     public struct Circle : IShape
     {
@@ -12,15 +6,12 @@ namespace CalculationArea.Shapes
 
         public Circle(double radius)
         {
+            if (radius <= 0)
+                throw new ArgumentException("Радиус должен быть положительным числом.");
+
             _radius = radius;
         }
 
-        public double CalculateArea()
-        {
-            if (_radius <= 0)
-                throw new ArgumentException("Радиус должен быть положительным числом.");
-
-            return Math.PI * _radius * _radius;
-        }
+        public double CalculateArea() => Math.PI * _radius * _radius;
     }
 }
