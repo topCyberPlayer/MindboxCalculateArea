@@ -6,21 +6,24 @@ namespace CalculationArea.Tests
     {
 
         [Theory]
-        [InlineData(0, 0)]
-        [InlineData(3.75, 5)]
-        public void Test1(double radius, double expected)
+        [InlineData(3.75, 44.1786)]
+        [InlineData(6, 113.0973)]
+        [InlineData(double.MaxValue, double.PositiveInfinity)]
+        public void CalculateAreaTest(double radius, double expected)
         {
             Circle circle = new(radius);
             double actual = ShapeCalculator.CalculateArea(circle);
-            Assert.Equal(expected, actual);
+            double roundedActual = Math.Round(actual,4);
+            Assert.Equal(expected, roundedActual);
         }
 
-        [Fact]
-        public void ThrowsException()
+        [Theory]
+        [InlineData(double.MinValue)]
+        [InlineData(-2)]
+        [InlineData(0)]
+        public void ThrowsExceptionIfRadiusLessOrEqualZero(double radius)
         {
-            double radius = -2;
-            Circle circle = new(radius);
-            var ex = Assert.Throws<ArgumentException>(() => ShapeCalculator.CalculateArea(circle));
+            var ex = Assert.Throws<ArgumentException>(() => new Circle(radius));
         }
     }
 }
