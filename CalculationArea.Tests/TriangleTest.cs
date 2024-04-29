@@ -9,7 +9,7 @@ namespace CalculationArea.Tests
         [InlineData(5, 6, 7, 14.6969)]
         public void CalculateAreaTest(double side1, double side2, double side3, double expected)
         {
-            Triangle triangle = new Triangle(side1,side2, side3);
+            Triangle triangle = Triangle.CreateTriangle(side1,side2, side3);
             double actual = ShapeCalculator.CalculateArea(triangle);
             double roundedActual = Math.Round(actual, 4);
             Assert.Equal(expected, roundedActual);
@@ -20,7 +20,7 @@ namespace CalculationArea.Tests
         [InlineData(9, 11, 13, false)]
         public void IsRightAngleTriangleTest(double side1, double side2, double side3, bool expected)
         {
-            Triangle triangle = new Triangle(side1, side2, side3);
+            Triangle triangle = Triangle.CreateTriangle(side1, side2, side3);
             bool result = triangle.IsRightAngleTriangle();
             Assert.Equal(result, expected);
         }
@@ -29,7 +29,7 @@ namespace CalculationArea.Tests
         [InlineData(0, 1, 1)]
         public void ThrowsExceptionIfSideLessOrEqualZero(double side1, double side2, double side3)
         {
-            var ex = Assert.Throws<ArgumentException>(() => new Triangle(side1, side2, side3));
+            var ex = Assert.Throws<ArgumentException>(() => Triangle.CreateTriangle(side1, side2, side3));
         }
     }
 }

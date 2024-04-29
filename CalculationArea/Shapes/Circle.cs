@@ -1,17 +1,19 @@
 ﻿namespace CalculationArea.Shapes
 {
-    public struct Circle : IShape
+    public readonly struct Circle : IShape
     {
-        private double _radius;
+        private readonly double _radius;
 
-        public Circle(double radius)
+        public static Circle CreateCircle(double radius)
         {
             if (radius <= 0)
                 throw new ArgumentException("Радиус должен быть положительным числом.");
 
-            _radius = radius;
+            return new Circle(radius);
         }
 
-        public double CalculateArea() => Math.PI * _radius * _radius;
+        private Circle(double radius) => _radius = radius;
+
+        public readonly double CalculateArea() => Math.PI * _radius * _radius;
     }
 }
